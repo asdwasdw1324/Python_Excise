@@ -10,21 +10,12 @@ def collatz(number):
 #定义collatz函数
 print("Please enter a number")
 EnteredNumber=int(input())
-if EnteredNumber==1:
+while EnteredNumber==1:
     print("The number you entered first can not 1")
     print("Please entered the number again")
     EnteredNumber=int(input())
-    while EnteredNumber==1:
-        print("The number you entered first can not 1")
-        print("Please entered the number again")
-        EnteredNumber=int(input())
-        continue
-    while EnteredNumber!=1:
-        EnteredNumber=collatz(EnteredNumber)
-        continue
-    print("Well,the number you entered has been calculated to 1 finally")
-else:
-    while EnteredNumber!=1:
-        EnteredNumber=collatz(EnteredNumber)
-        continue
-    print("Well,the number you entered has been calculated to 1 finally")
+    continue
+while EnteredNumber!=1:
+    EnteredNumber=collatz(EnteredNumber)
+    continue
+print("Well,the number you entered has been calculated to 1 finally")
