@@ -1,2 +1,1 @@
-# Python_Excise
-Just
+Just Python
