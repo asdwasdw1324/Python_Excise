@@ -33,3 +33,31 @@ def Confun(list):
     return x
 spam=['apples','bananas','tofu','cats']
 print(Confun(spam))
+
+#Case3_字符网格
+ grid = [ ['.', '.', '.', '.', '.','.'],
+          ['.', '0', '0', '.', '.','.'],
+          ['0', '0', '0', '0', '.','.'],
+          ['0', '0', '0', '0', '0','.'],
+          ['.', '0', '0', '0', '0','0'],
+          ['0', '0', '0', '0', '0','.'],
+          ['0', '0', '0', '0', '.','.'],
+          ['.', '0', '0', '.', '.','.'],
+          ['.', '.', '.', '.', '.','.']]
+ c=[]
+ c=copy.deepcopy(grid)
+ print(c)
+ gridLen=len(grid)
+ cyctime=len(grid[0])
+ print(gridLen)
+ print(cyctime) 
+# i=0(Can be deleted cause defautly equal 0)
+# j=0(Can be deleted cause defautly equal 0)
+ for j in range(cyctime):
+     if j < cyctime :
+         for i in range(gridLen):
+             if i < gridLen :
+                 print(c[i][j],end=' ')
+                 i=i+1
+     print('\n')
+     j=j+1
