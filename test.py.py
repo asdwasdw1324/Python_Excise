@@ -61,3 +61,12 @@ print(Confun(spam))
                  i=i+1
      print('\n')
      j=j+1
+
+#打印字符数量
+import pprint
+message='it was a bright cold day in APril, and the clocks were striking.'
+count={}
+for character in message:
+    count.setdefault(character,0)
+    count[character]=count[character]+1
+pprint.pprint(count)
