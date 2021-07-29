@@ -70,3 +70,26 @@ for character in message:
     count.setdefault(character,0)
     count[character]=count[character]+1
 pprint.pprint(count)
+
+#井子棋盘
+theboard={'top-L':' ','top-M':' ','top-R':' ',
+'mid-L':' ','mid-M':' ','mid-R':' ',
+'bot-L':' ','bot-M':' ','bot-R':' '}
+def printboard(board):
+    print(board['top-L']+'|'+board['top-M']+'|'+board['top-R'])
+    print('-+_+_')
+    print(board['mid-L']+'|'+board['mid-M']+'|'+board['mid-R'])
+    print('-+_+_')
+    print(board['bot-L']+'|'+board['bot-M']+'|'+board['bot-R'])
+turn='x'
+for i in range(9):
+    printboard(theboard)
+    print('Turn for '+turn+' .Move on which space')
+    print('Please enter the location on the board')
+    move=input()
+    theboard[move]=turn
+    if turn=='x':
+        turn='o'
+    else:
+        turn='x'
+printboard(theboard)
