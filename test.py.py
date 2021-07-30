@@ -71,7 +71,7 @@ for character in message:
     count[character]=count[character]+1
 pprint.pprint(count)
 
-#井子棋盘
+#井字棋盘
 theboard={'top-L':' ','top-M':' ','top-R':' ',
 'mid-L':' ','mid-M':' ','mid-R':' ',
 'bot-L':' ','bot-M':' ','bot-R':' '}
