@@ -6,8 +6,7 @@ def collatz(number):
     else:
         print(3*number+1)
         n=3*number+1
-    return n
-#定义collatz函数
+    return n#定义collatz函数
 print("Please enter a number")
 EnteredNumber=int(input())
 while EnteredNumber==1:
