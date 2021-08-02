@@ -114,3 +114,23 @@ print('bananas'+str(totalbrought(allguest,'bananas')))
 print('pineapples'+str(totalbrought(allguest,'pineapples')))
 print('pie'+str(totalbrought(allguest,'pie')))
 print('drink'+str(totalbrought(allguest,'drink')))
+
+#列表到字典并统计显示
+def add_inventory(inventory, added_items):
+    for k in added_items:
+        inventory.setdefault(k, 0)
+        inventory[k] = inventory[k]+1
+    return inventory
+
+def display_inventory(inventory):
+    print('Inventory:')
+    item_total = 0
+    for k, v in inventory.items():
+        print(str(v)+' '+k)
+        item_total += v
+    print('Total number of items:'+str(item_total))
+
+inv = {'gold coin': 42, 'rope': 1}
+dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
+inv = add_inventory(inv, dragon_loot)
+display_inventory(inv)
