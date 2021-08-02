@@ -93,3 +93,24 @@ for i in range(9):
     else:
         turn='x'
 printboard(theboard)
+
+#嵌套字典和列表
+allguest={
+'Alice':{'apples':5,'pretzels':12,'bananas':7},
+'Bob':{'bananas':7,'pineapples':8},
+'Ann':{'pie':88,'drink':22}
+}
+def totalbrought(guest,item):
+    numBrought=0
+    for k,v in guest.items():
+        numBrought=numBrought+v.get(item,0)
+        print(k)
+        print(numBrought)
+    return numBrought
+print('Number of the items')
+print('apples'+str(totalbrought(allguest,'apples')))
+print('pretzels'+str(totalbrought(allguest,'pretzels')))
+print('bananas'+str(totalbrought(allguest,'bananas')))
+print('pineapples'+str(totalbrought(allguest,'pineapples')))
+print('pie'+str(totalbrought(allguest,'pie')))
+print('drink'+str(totalbrought(allguest,'drink')))
