@@ -133,3 +133,14 @@ inv = {'gold coin': 42, 'rope': 1}
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 inv = add_inventory(inv, dragon_loot)
 display_inventory(inv)
+
+#计算字符串中的字母数量，并且做清晰的换行打印
+import pprint
+message='it was a bright cold day in APril, and the clocks were striking.'
+count={}
+for character in message:
+    count.setdefault(character,0)
+    count[character]=count[character]+1
+    print(character)
+    print(count[character])
+print(pprint.pformat(count))
