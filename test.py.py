@@ -162,3 +162,16 @@ if account in PASSWORDS:
     print(PASSWORDS[account])
 else:
     print(' There is no account named ' + account)
+
+#批量改变剪贴板内容格式
+#! usr/bin/env python3
+#encoding:utf-8
+import pyperclip
+text=pyperclip.paste()
+#Separatelinesandaddstars.
+lines=text.split('\n')
+for i in range(len(lines)):#loopthroughallindexesfor"lines"list
+    lines[i]='* '+lines[i]#addstartoeachstringin"lines"list
+text='\n'.join(lines)
+m=pyperclip.copy(text)
+print(m)
