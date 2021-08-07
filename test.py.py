@@ -175,3 +175,25 @@ for i in range(len(lines)):#loopthroughallindexesfor"lines"list
 text='\n'.join(lines)
 m=pyperclip.copy(text)
 print(m)
+
+#表格对齐打印
+import copy
+def count_width(the_list):
+    new_list = copy.deepcopy(the_list)
+    col_widths = [0]*len(the_list)
+    i = 0
+    while i < len(new_list):
+        new_list[i].sort(key=lambda x: len(x), reverse=True)
+        col_widths[i] = new_list[i][0]
+        i = i+1
+    return col_widths
+def list_ljust(the_list):
+    widths = count_width(the_list)
+    for j in range(len(the_list[0])):
+        for i in range(len(the_list)):
+            print(the_list[i][j].ljust(len(widths[i])), end=' ')
+        print('\r')
+table_data = [['apples', 'oranges', 'cherries', 'banana'],
+              ['Alice', 'Bob', 'Carol', 'David'],
+              ['dogs', 'cats', 'moose', 'goose']]
+list_ljust(table_data)
