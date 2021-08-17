@@ -197,3 +197,22 @@ table_data = [['apples', 'oranges', 'cherries', 'banana'],
               ['Alice', 'Bob', 'Carol', 'David'],
               ['dogs', 'cats', 'moose', 'goose']]
 list_ljust(table_data)
+
+#强口令检测
+import re
+password1=str(input())
+def CheckStrongPassword(password):
+    if len(password)<8:
+        print('This is not a good password')
+        return False
+    else:
+        chpw1=re.compile(r'[a-z]+').search(password)
+        chpw2=re.compile(r'[A-Z]+').search(password)
+        chpw3=re.compile(r'[0-9]+').search(password)
+        if chpw1==None or chpw2==None or chpw3==None:
+            print('wrong')
+            return False
+        else:
+            print('true')
+            return True
+print(CheckStrongPassword(password1))
