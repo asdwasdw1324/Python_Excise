@@ -216,3 +216,18 @@ def CheckStrongPassword(password):
             print('true')
             return True
 print(CheckStrongPassword(password1))
+
+#strip()的正则表达式版本
+import re
+print('Please enter the text')
+text=str(input())
+print('Plesase enter the parameter')
+parameter=str(input())#输入参数
+def ReStrip(text,parameter):
+    if parameter=='':
+        textregex=re.compile(r'^\s*|\s*$')
+        print(textregex.sub('', text))
+    else:
+        textregex=re.compile(parameter)
+        print(textregex.sub('',text))#定义函数
+ReStrip(text, parameter)#运行结果
