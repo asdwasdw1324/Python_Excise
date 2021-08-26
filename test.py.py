@@ -231,3 +231,37 @@ def ReStrip(text,parameter):
         textregex=re.compile(parameter)
         print(textregex.sub('',text))#定义函数
 ReStrip(text, parameter)#运行结果
+
+#随机出非固定题目及选项的试卷
+import random
+capitals={'Alabama':'Montgomery','Alaska':'Juneau',
+'Arizona':'Phoenix','California':'Sacramento'}
+
+for quiznum in range(2):
+
+    quizfile=open('capitalsquiz%s.txt'%(quiznum+1),'w')
+    answerkeyfile=open('capitalsquiz_answers%s.txt'%(quiznum+1),'w')
+
+    quizfile.write('Name:\n\nData:\n\nPeriod:\n\n')
+    quizfile.write((''*20)+'State Capitals Quiz (Form%s)'%(quiznum+1))
+    quizfile.write('\n\n')
+
+    states=list(capitals.keys())
+    random.shuffle(states)
+
+    for questionnum in range(2):
+        correctanswer=capitals[states[questionnum]]
+        wronganswers=list(capitals.values())
+        del wronganswers[wronganswers.index(correctanswer)]
+        wronganswers=random.sample(wronganswers,3)
+        answeroptions=wronganswers+[correctanswer]
+        random.shuffle(answeroptions)
+        quizfile.write('%s.what is the capital of %s\n'%(questionnum+1,states[questionnum]))
+        for i in range (4):
+            abcd=['A','B','C','D']
+            quizfile.write(abcd[i]+'.%s\n'%answeroptions[i])
+        quizfile.write('\n')
+        answerkeyfile.write('%s.%s\n'%(questionnum+1,'ABCD'[
+            answeroptions.index(correctanswer)]))
+    quizfile.close()
+    answerkeyfile.close()
