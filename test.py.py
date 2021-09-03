@@ -164,7 +164,7 @@ else:
     print(' There is no account named ' + account)
 
 #批量改变剪贴板内容格式
-#! usr/bin/env python3
+#!/usr/bin/env python3
 #encoding:utf-8
 import pyperclip
 text=pyperclip.paste()
