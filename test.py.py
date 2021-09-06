@@ -265,3 +265,16 @@ for quiznum in range(2):
             answeroptions.index(correctanswer)]))
     quizfile.close()
     answerkeyfile.close()
+
+#多重剪贴板
+#!/usr/bin/env python3
+import sys,pyperclip,shelve
+mcbshelf=shelve.open('mcb')
+if len(sys.argv)==3 and sys.argv[1].lower()=='save':
+    mcbshelf[sys.argv[2]]=pyperclip.paste()
+elif len(sys.argv)==2:
+    if sys.argv[1].lower()=='list':
+        pyperclip.copy(str(list(mcbshelf.keys())))
+    elif sys.argv[1] in mcbshelf:
+         pyperclip.copy(mcbshelf[sys.argv[1]])
+mcbshelf.close()
