@@ -278,3 +278,36 @@ elif len(sys.argv)==2:
     elif sys.argv[1] in mcbshelf:
          pyperclip.copy(mcbshelf[sys.argv[1]])
 mcbshelf.close()
+
+#登录系统查询成绩并修改密码
+import random
+import shelve
+#将数据存入文件db中
+with shelve.open("db") as f:
+    #scores是一个列表，通过get方法获取score的值：若score中有值，则scores=score；如果没有，则scores=[]
+    scores=f.get("score",[])
+    #accounts是一个字典，通过get方法获取accounts的值：若account中有值，则accounts=account；如果没有，则accounts={"admin":"12345"} 
+    accounts=f.get("account",{"admin":"12345"})
+    for i in range(3):
+        id=input("用户名:")
+        password=input("密码:")
+        if id in accounts and accounts[id]==password:
+            print('成绩表：',scores)
+            name=input("name:")        #向列表中添加学生姓名
+            cj=random.randint(50,100)  #向列表中添加学生成绩，范围为（50,100）
+            scores.append([name,cj])
+            print('成绩表：',scores)
+            npass=input("新密码:")
+            f["score"]=scores
+            f["account"]={"admin":npass}
+            break
+        else:
+            print("用户名或密码错误！")
+    else:
+        print("三次机会已用完，再见！")
+ 
+#通过字典的形式获取文件db中的数据
+print('---------------------------')
+with shelve.open('db') as f:
+    for k,v in f.items():
+        print(k,':',v)
