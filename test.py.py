@@ -305,7 +305,6 @@ with shelve.open("db") as f:
             print("用户名或密码错误！")
     else:
         print("三次机会已用完，再见！")
- 
 #通过字典的形式获取文件db中的数据
 print('---------------------------')
 with shelve.open('db') as f:
