@@ -310,3 +310,34 @@ print('---------------------------')
 with shelve.open('db') as f:
     for k,v in f.items():
         print(k,':',v)
+       
+#疯狂填词
+import re
+originalfile=open('file.text','w')
+originalfile.write('The ADJECTIVE pand walked to the NOUN and VERB.\nA nearby DOUBLEWORD was unaffected by these event.')
+originalfile.close()
+originalfile=open('file.text','r')
+longstr=originalfile.read()
+print('原文本如下:\n'+str(longstr))
+print('现在需要您将以下改词进行替换')
+#将原始文本写入指定文件，并且读出该文件内的相关内容
+textregex=re.compile(r'ADJECTIVE|NOUN|VERB|DOUBLEWORD')
+
+mmo=textregex.findall(longstr)
+
+for i in range (len(textregex.findall(longstr))):
+
+    subregex=re.compile(mmo[i])
+
+    mo=subregex.search(longstr)
+
+    print('Please input the '+mo.group())
+
+    subtext=str(input())
+
+    longstr=subregex.sub(subtext,longstr)
+    print(longstr)
+print('替换后的最终结果为:'+longstr+'\n现将其写入另一个全新文件')
+newfile=open('newfile.text','w')
+newfile.write(longstr)
+newfile.close()
