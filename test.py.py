@@ -312,32 +312,33 @@ with shelve.open('db') as f:
         print(k,':',v)
        
 #疯狂填词
+#疯狂填词
 import re
-originalfile=open('file.text','w')
-originalfile.write('The ADJECTIVE pand walked to the NOUN and VERB.\nA nearby DOUBLEWORD was unaffected by these event.')
+originalfile = open('file.text', 'w')
+originalfile.write('The ADJECTIVE pand walked to the NOUN and VERB.\nA nearby NOUN was unaffected by these event.')
 originalfile.close()
-originalfile=open('file.text','r')
-longstr=originalfile.read()
+originalfile = open('file.text', 'r')
+longstr = originalfile.read()
 print('原文本如下:\n'+str(longstr))
 print('现在需要您将以下改词进行替换')
 #将原始文本写入指定文件，并且读出该文件内的相关内容
-textregex=re.compile(r'ADJECTIVE|NOUN|VERB|DOUBLEWORD')
+textregex = re.compile(r'ADJECTIVE|NOUN|VERB')
 
-mmo=textregex.findall(longstr)
+mmo = textregex.findall(longstr)
 
-for i in range (len(textregex.findall(longstr))):
+for i in range(len(textregex.findall(longstr))):
 
-    subregex=re.compile(mmo[i])
+    subregex = re.compile(mmo[i])
 
-    mo=subregex.search(longstr)
+    mo = subregex.search(longstr)
 
     print('Please input the '+mo.group())
 
-    subtext=str(input())
+    subtext = str(input())
 
-    longstr=subregex.sub(subtext,longstr)
-    print(longstr)
+    longstr = subregex.sub(subtext, longstr,count=1)
+
 print('替换后的最终结果为:'+longstr+'\n现将其写入另一个全新文件')
-newfile=open('newfile.text','w')
+newfile = open('newfile.text', 'w')
 newfile.write(longstr)
 newfile.close()
