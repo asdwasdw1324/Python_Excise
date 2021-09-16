@@ -312,7 +312,6 @@ with shelve.open('db') as f:
         print(k,':',v)
        
 #疯狂填词
-#疯狂填词
 import re
 originalfile = open('file.text', 'w')
 originalfile.write('The ADJECTIVE pand walked to the NOUN and VERB.\nA nearby NOUN was unaffected by these event.')
