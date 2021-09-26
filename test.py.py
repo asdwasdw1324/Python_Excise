@@ -341,3 +341,29 @@ print('替换后的最终结果为:'+longstr+'\n现将其写入另一个全新�
 newfile = open('newfile.text', 'w')
 newfile.write(longstr)
 newfile.close()
+
+#datachange
+#!usr/bin/env python3
+import re, os, shutil
+
+datapattern=re.compile(r"""^(.*?)((0|1)?\d)-((0|1|2|3)?\d)-((19|20)?\d\d)(.*?)$""")
+
+for amerfilename in os.listdir('/users/yangmingfan/py2'):
+    mo=datapattern.search(amerfilename)
+    
+    if mo==None:
+        continue
+    beforepart=mo.group(1)
+    monthpart=mo.group(2)
+    daypart=mo.group(4)
+    yearpart=mo.group(6)
+    afterpart=mo.group(8)
+    #注意搜索分组序号规则
+    eurofilename=beforepart+daypart+'-'+monthpart+'-'+yearpart+afterpart
+    absworkingdir=os.path.abspath('/users/yangmingfan/py2')
+    amerfilename=os.path.join(absworkingdir,amerfilename)
+    eurofilename=os.path.join(absworkingdir,eurofilename)
+
+    print('Renaming "%s" to "%s"' %(amerfilename,eurofilename))
+    
+    shutil.move(amerfilename,eurofilename)
