@@ -367,3 +367,28 @@ for amerfilename in os.listdir('/users/yangmingfan/py2'):
     print('Renaming "%s" to "%s"' %(amerfilename,eurofilename))
     
     shutil.move(amerfilename,eurofilename)
+
+#文件归档为Zip
+#！/usr/bin/env python3
+import zipfile, os
+def backuptozip(folder):
+    folder=os.path.abspath(folder)
+    number=1
+    while True:
+        zipfilename=os.path.basename(folder)+'_'+str(number)+'.zip'
+        if os.path.exists(zipfilename)==False:
+            break
+        number=number+1
+    print('Creating %s...'%(zipfilename))
+    backupzip=zipfile.ZipFile(zipfilename,'w')
+    for foldername, subfolder, filenames in os.walk(folder):
+        print('Adding files in %s... now'%(foldername))
+        backupzip.write(foldername)
+        for filename in filenames:
+            newBase=os.path.basename(folder)+'_'
+            if filename.startswith(newBase) and filename.endwith('.zip'):
+                continue
+        backupzip.write(os.path.join(foldername,filename))
+    backupzip.close()
+    print('done')
+#backuptozip('/users/yangmingfan/...')
