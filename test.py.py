@@ -1,4 +1,4 @@
-#Case1_collatz
+#collatz
 def collatz(number):
     if number%2==0:
         print(number//2)
@@ -19,7 +19,7 @@ while EnteredNumber!=1:
     continue
 print("Well,the number you entered has been calculated to 1 finally")
 
-#Case2_逗号代码
+#逗号代码
 def Confun(list):
     n=len(list)
     i=0
@@ -33,7 +33,7 @@ def Confun(list):
 spam=['apples','bananas','tofu','cats']
 print(Confun(spam))
 
-#Case3_字符网格
+#字符网格
  grid = [ ['.', '.', '.', '.', '.','.'],
           ['.', '0', '0', '.', '.','.'],
           ['0', '0', '0', '0', '.','.'],
