@@ -392,3 +392,15 @@ def backuptozip(folder):
     backupzip.close()
     print('done')
 #backuptozip('/users/yangmingfan/...')
+
+#选择性复制
+#!/usr/bin/env python3
+import os, shutil
+def copyselection(folder):
+    for foldername, subfolder, filenames in os.walk(folder):
+        for filename in filenames:
+            if filename.endswith('.pdf'):
+                print(filename)
+                shutil.copy(os.path.join(foldername,filename),'/Users/yangmingfan/copyfolder')
+copyselection('/Users/yangmingfan/Secondary_Construction')
+#copyselection('/Users/yangmingfan/PhotoMemory')
