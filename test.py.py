@@ -404,3 +404,15 @@ def copyselection(folder):
                 shutil.copy(os.path.join(foldername,filename),'/Users/yangmingfan/copyfolder')
 copyselection('/Users/yangmingfan/Secondary_Construction')
 #copyselection('/Users/yangmingfan/PhotoMemory')
+
+#选择性删除大文件
+#!/usr/bin/env python3
+import os, shutil, send2trash
+def deletebigfile(folder):
+    for foldername, subfolder, filenames in os.walk(folder):
+        for filename in filenames:
+            filesizepath=os.path.join(foldername,filename)
+            if os.path.getsize(filesizepath) > 800:
+                print(filename)
+                send2trash.send2trash(filesizepath)
+deletebigfile('/Users/yangmingfan/Py2')
