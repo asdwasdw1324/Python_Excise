@@ -416,3 +416,26 @@ def deletebigfile(folder):
                 print(filename)
                 send2trash.send2trash(filesizepath)
 deletebigfile('/Users/yangmingfan/Py2')
+
+#消除缺失的编号
+import os, shutil, re
+path=input('input the path')
+prename=input('input the prename')
+nameregex1=re.compile(r'%s\d\d\d.*'%prename)
+nameregex2=re.compile(r'\d\d\d')
+L=[]
+for files in os.listdir(path):
+    if os.path.isfile(os.path.join(path,files)) and nameregex1.search(files) is not None:
+        L.append(files)
+        L.sort()
+print(L)
+for i in range(len(L)):
+    if i==0:
+        continue
+    if int(nameregex2.search(L[i]).group())-int(nameregex2.search(L[i-1]).group()) > 1:
+        number=int(nameregex2.search(L[i-1]).group())+1
+        exname=os.path.splitext(os.path.join(path,L[i]))[1]
+        filename=r'%s%03d%s'%(prename,number,exname)
+        shutil.move(os.path.join(path,L[i]),os.path.join(path,filename))
+        L[i]=filename
+print(L)
