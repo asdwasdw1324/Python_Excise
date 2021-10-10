@@ -458,3 +458,13 @@ for sym, w, h in (('*',4,4),('O',20,5),('x',1,3),('ZZ',3,3)):
         boxprint(sym,w,h)
     except Exception as err:
         print('An exception happened:'+str(err))
+
+#write errorlog
+import traceback
+try:
+    raise Exception('This is the error message.')
+except: 
+    errorfile=open('errorinfo.txt','w')
+    errorfile.write(traceback.format_exc())
+    errorfile.close()
+    print('The traceback info was written to errorinfo.txt')
