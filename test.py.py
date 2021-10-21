@@ -487,3 +487,11 @@ def factorial(n):
 
 print(factorial(5))
 logging.debug('End of program')
+
+#Download erro
+import requests
+res=requests.get('http://inventwithpython.com/page_that_does_not_exist')
+try:
+    res.raise_for_status()
+except Exception as error:
+    print('There was a problem: %s'%(error))
