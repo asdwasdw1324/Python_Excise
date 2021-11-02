@@ -504,3 +504,80 @@ playfile=open('RomeoAndJuliet.txt','wb')
 for chunk in res.iter_content(100000):
     playfile.write(chunk)
 playfile.close()
+
+#Download xkcd comics
+import bs4, requests, os
+
+from requests.models import parse_header_links
+url='http://xkcd.com'
+os.makedirs('/Users/yangmingfan/Py2/xkcd',exist_ok=True)
+while not url.endswith('#'):
+    print('Download page %s...' %url)
+    res=requests.get(url)
+    res.raise_for_status()
+
+    soup=bs4.BeautifulSoup(res.text)
+    
+    comicelem=soup.select('#comic img')
+    if comicelem==[]:
+        print('could not find comic img.')
+    else:
+        comicUrl='http:'+comicelem[0].get('src')
+        print('Downloading image %s' %(comicUrl))
+        res=requests.get(comicUrl)
+        res.raise_for_status()
+        imagefile=open(os.path.join('/Users/yangmingfan/Py2/xkcd',os.path.basename(comicUrl)),'wb')
+        for chunk in res.iter_content(100000):
+            imagefile.write(chunk)
+        imagefile.close()
+    prevlink=soup.select('a[rel="prev"]')[0]
+    url='http://xkcd.com'+prevlink.get('href')
+print('Done')
+
+#google feeling lucky
+import bs4, requests, webbrowser, sys
+print('Googling...')
+res=requests.get('http://google.com/search?q='+' '.join(sys.argv[1:]))
+res.raise_for_status()
+#print(res.status_code)
+soup=bs4.BeautifulSoup(res.text)
+linkelems=soup.select('.r a')
+numopen=min(5,len(linkelems))
+for i in range(numopen):
+    webbrowser.open('http://google.com'+linkelems[i].get('href'))
+
+#bs4 test
+import bs4
+
+examplefile=open('/Users/yangmingfan/Py2/example.html')
+
+examplesoup=bs4.BeautifulSoup(examplefile.read())
+
+elems=examplesoup.select('span')[1]
+
+print(str(elems))
+
+print(elems.get('class'))
+
+print(elems.get('"html-tag">&lt;ht')==None)
+
+print(elems.attrs)
+
+
+
+
+import bs4
+
+examplefile=open('/Users/yangmingfan/Py2/example.html')
+
+examplesoup=bs4.BeautifulSoup(examplefile.read())
+
+elems=examplesoup.select('span')
+
+print(len(elems))
+
+print(elems[0].getText)
+
+print(str(elems[0]))
+
+print(elems[0].attrs)
