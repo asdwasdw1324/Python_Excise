@@ -581,3 +581,51 @@ print(elems[0].getText)
 print(str(elems[0]))
 
 print(elems[0].attrs)
+
+
+#selenium test
+# from selenium import webdriver
+# browser=webdriver.Edge('C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Scripts\MicrosoftWebDriver.exe')
+# browser.get('http://www.baidu.com')
+# print(browser.page_source)
+# browser.close()
+
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.edge.service import Service
+# s=Service('C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Scripts\MicrosoftWebDriver.exe')
+# browser= webdriver.Edge(service=s)
+# browser.get('http://inventwithpython.com')
+# print(browser.page_source)
+# try:
+#     elem=browser.find_element(By.CLASS_NAME,'card-title')
+#     print('Found element with that calss name!')#%(elem.tag_name))
+#     browser.quit()
+# except:
+#     print('Was not able to find an element with that name.')
+#     browser.quit()
+
+
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.edge.service import Service
+# s=Service('C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Scripts\MicrosoftWebDriver.exe')
+# browser= webdriver.Edge(service=s)
+# browser.get('http://inventwithpython.com')
+# linkelem=browser.find_element(By.LINK_TEXT,'Blog')
+# print(type(linkelem))
+# linkelem.click()
+
+
+# from selenium import webdriver
+# from selenium.webdriver.common import by
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.edge.service import Service
+# s=Service('C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Scripts\MicrosoftWebDriver.exe')
+# browser= webdriver.Edge(service=s)
+# browser.get('http://www.baidu.com')
+# try:
+#     textelems=browser.find_element(By.ID,'kw')
+#     textelems.send_keys('12345')
+# except:
+#     print('fialed')
