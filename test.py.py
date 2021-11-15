@@ -628,4 +628,44 @@ print(elems[0].attrs)
 #     textelems=browser.find_element(By.ID,'kw')
 #     textelems.send_keys('12345')
 # except:
-#     print('fialed')
+#     print('failed')
+
+#cmdmail
+import sys
+import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+s = Service(r'/Users/yangmingfan/Library/Python/3.8/bin/chromedriver')
+browser = webdriver.Chrome(service=s)
+browser.get('http://mail.qq.com')
+
+time.sleep(1)
+browser.switch_to.frame('iframe')
+email_elem = browser.find_element(By.NAME, 'email')
+password_elem = browser.find_element(By.NAME, 'password')
+
+email_elem.send_keys('278586884@qq.com')
+password_elem.send_keys('qqhbc68119443')
+login_elem = browser.find_element(By.ID, 'dologin')
+login_elem.click()
+
+time.sleep(1)
+write_elem = browser.find_element(By.XPATH, '')
+write_elem.click()
+
+time.sleep(1)
+recipient_elem = browser.find_element(By.XPATH, '')
+recipient_elem.send_keys(sys.argv[1])
+
+frame_elem = browser.find_element(By.XPATH, '')
+browser.switch_to.frame(frame_elem)
+content_elem = browser.find_element(By.XPATH, '')
+content_elem.send_keys(sys.argv[2])
+
+browser.switch_to.default_content()
+send_elem = browser.find_element(By.XPATH, '')
+send_elem.click()
+
+time.sleep(1)
+browser.quit()
