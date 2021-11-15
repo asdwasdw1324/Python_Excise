@@ -630,42 +630,52 @@ print(elems[0].attrs)
 # except:
 #     print('failed')
 
-#cmdmail
+#cmdqqmail
 import sys
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-s = Service(r'/Users/yangmingfan/Library/Python/3.8/bin/chromedriver')
-browser = webdriver.Chrome(service=s)
+s = Service('C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python37_64\Scripts\MicrosoftWebDriver.exe')
+browser = webdriver.Edge(service=s)
 browser.get('http://mail.qq.com')
 
 time.sleep(1)
-browser.switch_to.frame('iframe')
-email_elem = browser.find_element(By.NAME, 'email')
-password_elem = browser.find_element(By.NAME, 'password')
+browser.switch_to.frame('login_frame')
+email_elem = browser.find_element(By.NAME, 'u')
+password_elem = browser.find_element(By.NAME, 'p')
 
 email_elem.send_keys('278586884@qq.com')
-password_elem.send_keys('qqhbc68119443')
-login_elem = browser.find_element(By.ID, 'dologin')
+password_elem.send_keys('Qqhbc68119443')
+login_elem = browser.find_element(By.ID, 'login_button')
 login_elem.click()
 
 time.sleep(1)
-write_elem = browser.find_element(By.XPATH, '')
+write_elem = browser.find_element(By.XPATH, '//*[@id="composebtn"]')
 write_elem.click()
 
+#收件人填写
 time.sleep(1)
-recipient_elem = browser.find_element(By.XPATH, '')
-recipient_elem.send_keys(sys.argv[1])
+browser.switch_to.frame('mainFrame')
+recipient_elem = browser.find_element(By.XPATH, '//*[@id="toAreaCtrl"]/div[2]/input')
+recipient_elem.send_keys('278586884@qq.com')
 
-frame_elem = browser.find_element(By.XPATH, '')
-browser.switch_to.frame(frame_elem)
-content_elem = browser.find_element(By.XPATH, '')
-content_elem.send_keys(sys.argv[2])
+#主题填写
+time.sleep(1)
+frame_elem = browser.find_element(By.XPATH, '//*[@id="subject"]')
+frame_elem.send_keys("from owner's mail")
 
-browser.switch_to.default_content()
-send_elem = browser.find_element(By.XPATH, '')
+#正文填写
+content_frame = browser.find_element_by_xpath('//*[@class="qmEditorIfrmEditArea"]')
+browser.switch_to.frame(content_frame)
+browser.find_element_by_xpath('/html/body').click()
+content_elem = browser.find_element(By.XPATH, '/html/body').send_keys("Hello World","\nYMF")
+
+#点击发送
+time.sleep(1)
+browser.switch_to.parent_frame()
+send_elem = browser.find_element(By.XPATH, '/html/body/form[2]/div[3]/div/a[1]')
 send_elem.click()
 
-time.sleep(1)
+time.sleep(5)
 browser.quit()
