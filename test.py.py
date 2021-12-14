@@ -679,3 +679,33 @@ send_elem.click()
 
 time.sleep(5)
 browser.quit()
+
+
+#loaddatafromexcel
+import openpyxl, os, pprint
+os.chdir('/Users/yangmingfan/Py2/')
+wb = openpyxl.load_workbook('censuspopdata.xlsx')
+
+print('Opening workbook...')
+
+sheet = wb['Population by Census Tract']
+countydata = {}
+
+print('Reading Rows')
+
+for row in range (2, sheet.max_row + 1):
+    state = sheet['B' + str(row)].value
+    county = sheet['C' + str(row)].value
+    pop = sheet['D' + str(row)].value
+
+    countydata.setdefault(state, {})
+    countydata[state].setdefault(county,{'tracts':0, 'pop':0})
+
+    countydata[state][county]['tracts'] += 1
+    countydata[state][county]['pop'] += int(float(pop))
+
+print('Writing results')
+resultfile = open('census2010.py','w')
+resultfile.write('alldata = ' + pprint.pformat(countydata))
+resultfile.close()
+print('Done')
